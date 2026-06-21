@@ -1,9 +1,11 @@
 import prisma from "@/lib/prisma"
 import { notFound } from "next/navigation"
+import AddToCartButton from "@/components/AddToCartButton"
 
-export default async function RestaurantPage({ params }: { params: { id: string } }) {
+export default async function RestaurantPage({ params }: { params: Promise<{ id: string }> }) {
+  const resolvedParams = await params;
   const restaurant = await prisma.restaurant.findUnique({
-    where: { id: params.id },
+    where: { id: resolvedParams.id },
     include: {
       menus: true
     }
@@ -33,6 +35,7 @@ export default async function RestaurantPage({ params }: { params: { id: string 
                 <h3 className="text-lg font-bold text-gray-900 mb-1">{menu.name}</h3>
                 <p className="text-gray-500 text-sm line-clamp-2 mb-2">{menu.description}</p>
                 <p className="text-blue-600 font-semibold">{menu.price.toLocaleString()}원</p>
+                <AddToCartButton menuId={menu.id} />
               </div>
               <div 
                 className="w-32 h-full min-h-[120px] bg-cover bg-center"

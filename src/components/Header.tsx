@@ -2,9 +2,20 @@ import Link from "next/link"
 import { getServerSession } from "next-auth"
 import { authOptions } from "@/lib/auth"
 import LogoutButton from "./LogoutButton"
+import prisma from "@/lib/prisma"
 
 export default async function Header() {
   const session = await getServerSession(authOptions)
+  
+  let cartItemCount = 0;
+  if (session?.user) {
+    const userId = (session.user as any).id
+    const result = await prisma.cartItem.aggregate({
+      _sum: { quantity: true },
+      where: { userId }
+    })
+    cartItemCount = result._sum.quantity || 0;
+  }
 
   return (
     <header className="bg-white border-b border-gray-100 sticky top-0 z-50">
@@ -15,11 +26,15 @@ export default async function Header() {
         <nav className="flex items-center gap-4 sm:gap-6">
           {session?.user ? (
             <>
-              <span className="text-sm text-gray-700 hidden sm:inline-block">
-                <span className="font-semibold text-gray-900">{session.user.name}</span>님 환영합니다!
-              </span>
-              <Link href="/cart" className="text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors">
-                장바구니
+              <Link href="/cart" className="relative p-2 text-gray-700 hover:text-blue-600 transition-colors" title="장바구니">
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                </svg>
+                {cartItemCount > 0 && (
+                  <span className="absolute top-0 right-0 inline-flex items-center justify-center px-1.5 py-0.5 text-xs font-bold leading-none text-white transform translate-x-1/4 -translate-y-1/4 bg-red-600 rounded-full">
+                    {cartItemCount}
+                  </span>
+                )}
               </Link>
               <LogoutButton />
             </>

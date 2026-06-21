@@ -9,16 +9,8 @@ export default async function HomePage() {
 
   return (
     <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-3xl mx-auto">
-        <header className="mb-12 text-center">
-          <h1 className="text-4xl font-extrabold text-gray-900 tracking-tight mb-2">
-            🚀 초간단 배달앱
-          </h1>
-          <p className="text-gray-500 text-lg">
-            오늘 먹고 싶은 식당을 선택해보세요!
-          </p>
-        </header>
-
+      <div className="max-w-4xl mx-auto">
+        <h1 className="text-2xl font-bold text-gray-900 mb-6">오늘의 추천 식당</h1>
         <div className="grid gap-6 md:grid-cols-2">
           {restaurants.map((restaurant) => (
             <Link 

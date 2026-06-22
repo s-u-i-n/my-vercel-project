@@ -27,7 +27,7 @@ export default async function Header() {
           {session?.user ? (
             <>
               <span className="text-sm text-gray-500 hidden sm:inline-block">
-                {session.user.email}님
+                {session.user.name || session.user.email}님
               </span>
               <Link href="/checkout" className="relative p-1 text-gray-700 hover:text-[#ea580c] transition-colors flex items-center" title="장바구니">
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">

@@ -53,14 +53,19 @@ export default function MenuOptionModal({ menu, onClose }: { menu: Menu, onClose
           router.push("/login")
           return
         }
-        if (!res.ok) throw new Error("장바구니 담기에 실패했습니다.")
+        if (!res.ok) {
+          const errMsg = await res.text()
+          throw new Error(errMsg || "장바구니 담기에 실패했습니다.")
+        }
       }
 
+      router.refresh() // 헤더 카운트 즉시 반영을 위해 먼저 refresh 호출
+
       if (redirectCheckout) {
+        // refresh 직후 push 하면 최신 상태를 가지고 라우팅 됨
         router.push("/checkout")
       } else {
         alert("장바구니에 담았습니다!")
-        router.refresh()
         onClose()
       }
     } catch (err: any) {

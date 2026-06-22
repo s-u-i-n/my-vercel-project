@@ -19,17 +19,32 @@ export async function POST(request: Request) {
       return new NextResponse("menuId is required", { status: 400 })
     }
 
-    // 완전히 동일한 옵션을 가진 동일한 메뉴가 있는지 찾기
-    const existingCartItems = await prisma.cartItem.findMany({
-      where: {
-        userId,
-        menuId
-      }
+    // 메뉴 정보 가져오기 (어느 식당인지 확인)
+    const menuToadd = await prisma.menu.findUnique({
+      where: { id: menuId },
+      select: { restaurantId: true }
     })
 
-    // JSON 객체 비교 (간단한 문자열화 비교)
+    if (!menuToadd) {
+      return new NextResponse("Menu not found", { status: 404 })
+    }
+
+    // 장바구니에 담긴 아이템의 식당 확인
+    const existingCartItems = await prisma.cartItem.findMany({
+      where: { userId },
+      include: { menu: true }
+    })
+
+    if (existingCartItems.length > 0) {
+      const firstItemRestaurantId = existingCartItems[0].menu.restaurantId
+      if (firstItemRestaurantId !== menuToadd.restaurantId) {
+        return new NextResponse("다른 가게의 메뉴가 이미 장바구니에 있습니다. 같은 가게의 메뉴만 담을 수 있습니다.", { status: 400 })
+      }
+    }
+
+    // 완전히 동일한 옵션을 가진 동일한 메뉴가 있는지 찾기
     const existingItem = existingCartItems.find(item => 
-      JSON.stringify(item.selectedOptions) === JSON.stringify(selectedOptions || null)
+      item.menuId === menuId && JSON.stringify(item.selectedOptions) === JSON.stringify(selectedOptions || null)
     )
 
     if (existingItem) {

@@ -40,9 +40,9 @@ async function main() {
 
   await prisma.restaurant.create({
     data: {
-      name: "맛있는 떡볶이",
-      description: "매콤달콤 맛있는 떡볶이 전문점",
-      imageUrl: "https://images.unsplash.com/photo-1541592106381-b31e9677c0e5?q=80&w=600&auto=format&fit=crop",
+      name: "동대문 엽기떡볶이",
+      description: "스트레스 풀리는 매운맛",
+      imageUrl: "https://images.unsplash.com/photo-1580651315530-69c8e0026377?q=80&w=1000&auto=format&fit=crop",
       menus: {
         create: [
           { name: "치즈 떡볶이", price: 6500, description: "모짜렐라 치즈가 듬뿍 들어간 떡볶이", imageUrl: "https://images.unsplash.com/photo-1541592106381-b31e9677c0e5?q=80&w=400&auto=format&fit=crop", options: tteokbokkiOptions },

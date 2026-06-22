@@ -48,10 +48,10 @@ export async function POST(request: Request) {
           requests,
           orderItems: {
             create: items.map(item => ({
-              menuId: item.menuId,
+              menu: { connect: { id: item.menuId } },
               quantity: item.quantity,
               price: item.menu.price, // 주문 당시의 가격 스냅샷
-              selectedOptions: item.selectedOptions || null
+              selectedOptions: item.selectedOptions ? (item.selectedOptions as any) : undefined
             }))
           }
         }

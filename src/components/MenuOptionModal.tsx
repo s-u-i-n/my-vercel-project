@@ -89,7 +89,7 @@ export default function MenuOptionModal({ menu, onClose }: { menu: Menu, onClose
         
         <div className="p-6 overflow-y-auto flex-1 bg-gray-50/50">
           <div className="text-right mb-6">
-            <p className="text-[#ea580c] font-bold text-lg">{(menu.price).toLocaleString()}원</p>
+            <p className="text-red-500 font-bold text-lg">{(menu.price).toLocaleString()}원</p>
           </div>
           
           <div className="bg-white rounded-xl p-4 border border-gray-100 mb-6 space-y-6">
@@ -98,14 +98,14 @@ export default function MenuOptionModal({ menu, onClose }: { menu: Menu, onClose
                 <h3 className="font-bold text-gray-900 text-sm mb-3">{group.name}</h3>
                 <div className="flex flex-wrap gap-2">
                   {group.choices.map((choice, cIdx) => (
-                    <label key={cIdx} className={`flex items-center gap-2 px-3 py-2 border rounded-lg cursor-pointer transition-colors ${selectedOptions[group.name] === choice ? 'border-[#ea580c] bg-orange-50' : 'border-gray-200 hover:bg-gray-50'}`}>
+                    <label key={cIdx} className={`flex items-center gap-2 px-3 py-2 border rounded-lg cursor-pointer transition-colors ${selectedOptions[group.name] === choice ? 'border-red-500 bg-red-50' : 'border-gray-200 hover:bg-gray-50'}`}>
                       <input 
                         type="radio" 
                         name={group.name}
                         value={choice}
                         checked={selectedOptions[group.name] === choice}
                         onChange={() => handleOptionChange(group.name, choice)}
-                        className="w-4 h-4 text-[#ea580c] focus:ring-[#ea580c]"
+                        className="w-4 h-4 text-red-500 focus:ring-red-500"
                       />
                       <span className="text-gray-700 text-sm font-medium">{choice}</span>
                     </label>
@@ -139,14 +139,14 @@ export default function MenuOptionModal({ menu, onClose }: { menu: Menu, onClose
           <button 
             onClick={() => addToCart(false)}
             disabled={loading}
-            className="flex-1 bg-white border border-[#ea580c] text-[#ea580c] font-bold py-3.5 rounded-xl hover:bg-orange-50 transition-colors text-sm"
+            className="flex-1 bg-white border border-red-500 text-red-500 font-bold py-3.5 rounded-xl hover:bg-red-50 transition-colors text-sm"
           >
             장바구니 담기
           </button>
           <button 
             onClick={() => addToCart(true)}
             disabled={loading}
-            className="flex-1 bg-[#ea580c] text-white font-bold py-3.5 rounded-xl hover:bg-orange-700 transition-colors text-sm flex flex-col items-center justify-center leading-tight"
+            className="flex-1 bg-red-500 text-white font-bold py-3.5 rounded-xl hover:bg-orange-700 transition-colors text-sm flex flex-col items-center justify-center leading-tight"
           >
             <span>바로 주문하기</span>
             <span className="text-xs font-normal opacity-90">{(menu.price * quantity).toLocaleString()}원</span>

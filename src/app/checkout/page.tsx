@@ -54,7 +54,7 @@ export default async function CheckoutPage() {
 
         <div className="border-t-2 border-gray-900 pt-6 mb-8 flex justify-between items-center">
           <span className="font-bold text-gray-900">총 결제 금액</span>
-          <span className="text-xl font-extrabold text-[#ea580c]">{totalPrice.toLocaleString()}원</span>
+          <span className="text-xl font-extrabold text-red-500">{totalPrice.toLocaleString()}원</span>
         </div>
 
         {/* 결제 폼 */}

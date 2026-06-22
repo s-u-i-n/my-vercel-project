@@ -20,7 +20,7 @@ export default function OrderSuccessPage() {
         <div className="pt-6 border-t border-gray-100">
           <Link 
             href="/" 
-            className="block w-full bg-blue-600 text-white font-bold text-lg py-3 rounded-xl hover:bg-blue-700 transition-colors shadow-sm"
+            className="block w-full bg-red-500 text-white font-bold text-lg py-3 rounded-xl hover:bg-red-600 transition-colors shadow-sm"
           >
             홈으로 돌아가기
           </Link>

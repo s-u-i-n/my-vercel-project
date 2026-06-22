@@ -39,7 +39,7 @@ export default function RestaurantFilter({ initialRestaurants }: { initialRestau
           placeholder="먹고 싶은 식당이나 메뉴를 검색해보세요! (예: 떡볶이)" 
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#ea580c] focus:border-transparent transition-all"
+          className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all"
         />
       </div>
 
@@ -51,7 +51,7 @@ export default function RestaurantFilter({ initialRestaurants }: { initialRestau
             onClick={() => setSelectedCategory(category)}
             className={`px-5 py-2 rounded-full whitespace-nowrap text-sm font-medium transition-colors ${
               selectedCategory === category
-                ? "bg-[#ea580c] text-white"
+                ? "bg-red-500 text-white"
                 : "bg-white text-gray-600 border border-gray-200 hover:bg-gray-50"
             }`}
           >
@@ -75,10 +75,10 @@ export default function RestaurantFilter({ initialRestaurants }: { initialRestau
             <div className="p-5">
               <div className="flex justify-between items-start mb-1">
                 <h2 className="text-lg font-bold text-gray-900">{restaurant.name}</h2>
-                <span className="text-xs px-2 py-1 bg-orange-50 text-orange-600 rounded-md font-medium">{restaurant.category}</span>
+                <span className="text-xs px-2 py-1 bg-red-50 text-red-500 rounded-md font-medium">{restaurant.category}</span>
               </div>
               <p className="text-sm text-gray-500 line-clamp-2 mb-4">{restaurant.description}</p>
-              <p className="text-sm font-medium text-[#ea580c]">메뉴 보기 →</p>
+              <p className="text-sm font-medium text-red-500">메뉴 보기 →</p>
             </div>
           </Link>
         ))}

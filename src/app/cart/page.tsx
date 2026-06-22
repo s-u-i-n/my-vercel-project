@@ -37,7 +37,7 @@ export default async function CartPage() {
         {cartItems.length === 0 ? (
           <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 text-center">
             <p className="text-gray-500 mb-4">장바구니가 비어있습니다.</p>
-            <Link href="/" className="inline-block bg-blue-600 text-white font-medium px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+            <Link href="/" className="inline-block bg-red-500 text-white font-medium px-6 py-2 rounded-lg hover:bg-red-600 transition-colors">
               식당 둘러보기
             </Link>
           </div>

@@ -46,7 +46,7 @@ export default function CartItemCard({ item }: CartItemProps) {
         <h3 className="text-[15px] font-bold text-gray-900 mb-1">{item.menu.name}</h3>
         <p className="text-xs text-gray-500">{item.menu.restaurant.name}</p>
         {item.selectedOptions && Object.keys(item.selectedOptions as Record<string, string>).length > 0 && (
-          <p className="text-xs text-[#ea580c] mt-1">
+          <p className="text-xs text-red-500 mt-1">
             옵션: {Object.values(item.selectedOptions as Record<string, string>).join(", ")}
           </p>
         )}

@@ -52,13 +52,13 @@ export default function LoginPage() {
           </div>
           <button 
             type="submit"
-            className="w-full bg-blue-600 text-white p-2 rounded-md hover:bg-blue-700"
+            className="w-full bg-red-500 text-white p-2 rounded-md hover:bg-red-600"
           >
             로그인
           </button>
         </form>
         <p className="mt-4 text-center text-sm">
-          계정이 없으신가요? <a href="/register" className="text-blue-600 hover:underline">회원가입</a>
+          계정이 없으신가요? <a href="/register" className="text-red-500 hover:underline">회원가입</a>
         </p>
       </div>
     </div>

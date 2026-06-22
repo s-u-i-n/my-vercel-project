@@ -51,7 +51,7 @@ export default async function OrdersPage() {
                       <p className="text-xs text-gray-500">주문일: {orderDate}</p>
                       <p className="text-xs text-gray-500">배달 주소: {order.address || "정보 없음"}</p>
                     </div>
-                    <span className="bg-orange-50 text-[#ea580c] text-[10px] font-bold px-2 py-1 rounded-full border border-orange-100">
+                    <span className="bg-red-50 text-red-500 text-[10px] font-bold px-2 py-1 rounded-full border border-orange-100">
                       접수 완료
                     </span>
                   </div>
@@ -64,7 +64,7 @@ export default async function OrdersPage() {
                             <h3 className="text-[15px] font-bold text-gray-900 mb-1">{item.menu.name}</h3>
                             <p className="text-xs text-gray-500">{order.restaurant.name}</p>
                             {item.selectedOptions && Object.keys(item.selectedOptions as Record<string, string>).length > 0 && (
-                              <p className="text-xs text-[#ea580c] mt-1">
+                              <p className="text-xs text-red-500 mt-1">
                                 옵션: {Object.values(item.selectedOptions as Record<string, string>).join(", ")}
                               </p>
                             )}
@@ -80,7 +80,7 @@ export default async function OrdersPage() {
 
                   <div className="border-t-2 border-gray-900 pt-4 mt-6 text-right">
                     <span className="text-sm font-bold text-gray-700 mr-2">총 결제 금액:</span>
-                    <span className="text-lg font-extrabold text-[#ea580c]">{order.totalPrice.toLocaleString()}원</span>
+                    <span className="text-lg font-extrabold text-red-500">{order.totalPrice.toLocaleString()}원</span>
                   </div>
                 </div>
               )

@@ -42,7 +42,7 @@ export default function AddToCartButton({ menuId }: { menuId: string }) {
       className={`mt-3 w-full py-2 rounded-lg font-medium text-sm transition-colors ${
         loading 
           ? "bg-gray-200 text-gray-500 cursor-not-allowed" 
-          : "bg-blue-50 text-blue-600 hover:bg-blue-100 active:bg-blue-200"
+          : "bg-blue-50 text-red-500 hover:bg-blue-100 active:bg-blue-200"
       }`}
     >
       {loading ? "담는 중..." : "장바구니 담기"}

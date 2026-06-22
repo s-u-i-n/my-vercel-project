@@ -64,13 +64,13 @@ export default function RegisterPage() {
           </div>
           <button 
             type="submit"
-            className="w-full bg-green-600 text-white p-2 rounded-md hover:bg-green-700"
+            className="w-full bg-red-500 text-white p-2 rounded-md hover:bg-red-600"
           >
             가입하기
           </button>
         </form>
         <p className="mt-4 text-center text-sm">
-          이미 계정이 있으신가요? <a href="/login" className="text-blue-600 hover:underline">로그인</a>
+          이미 계정이 있으신가요? <a href="/login" className="text-red-500 hover:underline">로그인</a>
         </p>
       </div>
     </div>

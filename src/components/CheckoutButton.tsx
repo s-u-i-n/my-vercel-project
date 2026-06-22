@@ -19,7 +19,7 @@ export default function CheckoutButton({ disabled = false }: { disabled?: boolea
       className={`w-full font-bold text-lg py-4 rounded-xl transition-colors shadow-sm ${
         disabled 
           ? "bg-gray-300 text-gray-500 cursor-not-allowed" 
-          : "bg-blue-600 text-white hover:bg-blue-700"
+          : "bg-red-500 text-white hover:bg-red-600"
       }`}
     >
       주문 정보 입력하기

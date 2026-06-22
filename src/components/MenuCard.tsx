@@ -19,8 +19,8 @@ export default function MenuCard({ menu }: MenuCardProps) {
         <div className="flex-1 pr-4">
           <h3 className="font-bold text-gray-900 text-[15px] mb-1">{menu.name}</h3>
           <p className="text-gray-500 text-xs line-clamp-2 mb-2">{menu.description}</p>
-          <p className="text-[#ea580c] font-bold text-sm mb-3">{menu.price.toLocaleString()}원</p>
-          <button className="bg-[#fff7ed] text-[#ea580c] text-xs font-bold px-3 py-1.5 rounded-md hover:bg-orange-100 transition-colors w-max">
+          <p className="text-red-500 font-bold text-sm mb-3">{menu.price.toLocaleString()}원</p>
+          <button className="bg-[#fff7ed] text-red-500 text-xs font-bold px-3 py-1.5 rounded-md hover:bg-orange-100 transition-colors w-max">
             메뉴 담기
           </button>
         </div>

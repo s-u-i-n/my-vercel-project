@@ -51,7 +51,7 @@ export default function CheckoutForm({ totalPrice }: { totalPrice: number }) {
           value={formData.address}
           onChange={handleChange}
           placeholder="서울특별시 강남구 테헤란로 123"
-          className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:ring-1 focus:ring-[#ea580c] focus:border-[#ea580c] transition-colors text-sm"
+          className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:ring-1 focus:ring-red-500 focus:border-red-500 transition-colors text-sm"
         />
       </div>
       
@@ -59,7 +59,7 @@ export default function CheckoutForm({ totalPrice }: { totalPrice: number }) {
         <button 
           type="submit"
           disabled={loading}
-          className="w-full bg-[#ea580c] text-white font-bold text-sm py-4 rounded-lg hover:bg-orange-700 transition-colors shadow-sm disabled:bg-gray-400"
+          className="w-full bg-red-500 text-white font-bold text-sm py-4 rounded-lg hover:bg-orange-700 transition-colors shadow-sm disabled:bg-gray-400"
         >
           {loading ? "결제 중..." : `${totalPrice.toLocaleString()}원 결제하기`}
         </button>

@@ -1,6 +1,8 @@
 import prisma from "@/lib/prisma"
 import RestaurantFilter from "@/components/RestaurantFilter"
 
+export const dynamic = "force-dynamic";
+
 export default async function HomePage() {
   // 식당 목록 데이터 가져오기
   const restaurants = await prisma.restaurant.findMany({

@@ -2,6 +2,8 @@ import prisma from "@/lib/prisma"
 import { notFound } from "next/navigation"
 import MenuCard from "@/components/MenuCard"
 
+export const dynamic = "force-dynamic";
+
 export default async function RestaurantPage({ params }: { params: Promise<{ id: string }> }) {
   const resolvedParams = await params;
   const restaurant = await prisma.restaurant.findUnique({

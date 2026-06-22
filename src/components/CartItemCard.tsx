@@ -7,6 +7,7 @@ type CartItemProps = {
   item: {
     id: string
     quantity: number
+    selectedOptions: any
     menu: {
       name: string
       price: number
@@ -40,40 +41,47 @@ export default function CartItemCard({ item }: CartItemProps) {
   }
 
   return (
-    <li className={`p-6 flex flex-col sm:flex-row sm:items-center gap-4 ${loading ? 'opacity-50' : ''}`}>
-      <div 
-        className="w-full sm:w-24 h-24 bg-cover bg-center rounded-lg flex-shrink-0"
-        style={{ backgroundImage: `url(${item.menu.imageUrl || 'https://via.placeholder.com/150'})` }}
-      />
+    <li className={`py-5 flex items-center justify-between gap-4 border-b border-gray-100 ${loading ? 'opacity-50' : ''}`}>
       <div className="flex-1">
-        <p className="text-sm text-gray-500 mb-1">{item.menu.restaurant.name}</p>
-        <h3 className="text-lg font-bold text-gray-900">{item.menu.name}</h3>
-        <p className="text-gray-600 mt-1">{item.menu.price.toLocaleString()}원</p>
+        <h3 className="text-[15px] font-bold text-gray-900 mb-1">{item.menu.name}</h3>
+        <p className="text-xs text-gray-500">{item.menu.restaurant.name}</p>
+        {item.selectedOptions && Object.keys(item.selectedOptions as Record<string, string>).length > 0 && (
+          <p className="text-xs text-[#ea580c] mt-1">
+            옵션: {Object.values(item.selectedOptions as Record<string, string>).join(", ")}
+          </p>
+        )}
       </div>
       
       {/* 수량 조절 버튼 */}
-      <div className="flex items-center gap-3 bg-gray-100 rounded-lg px-3 py-1 w-max">
+      <div className="flex items-center gap-3 bg-gray-50 rounded-full px-2 py-1 w-max border border-gray-100">
         <button 
           onClick={() => updateQuantity(item.quantity - 1)}
           disabled={loading}
-          className="text-gray-600 hover:text-black font-bold text-xl px-2"
+          className="w-5 h-5 flex items-center justify-center text-gray-500 hover:text-black font-bold"
         >
           -
         </button>
-        <span className="font-semibold text-gray-900 w-4 text-center">{item.quantity}</span>
+        <span className="font-semibold text-gray-900 w-4 text-center text-sm">{item.quantity}</span>
         <button 
           onClick={() => updateQuantity(item.quantity + 1)}
           disabled={loading}
-          className="text-gray-600 hover:text-black font-bold text-xl px-2"
+          className="w-5 h-5 flex items-center justify-center text-gray-500 hover:text-black font-bold"
         >
           +
         </button>
       </div>
 
-      <div className="text-right sm:w-32">
-        <p className="text-xl font-bold text-blue-600">
+      <div className="flex items-center gap-4 min-w-[100px] justify-end">
+        <p className="text-[15px] font-bold text-gray-900">
           {(item.menu.price * item.quantity).toLocaleString()}원
         </p>
+        <button 
+          onClick={() => updateQuantity(0)} 
+          disabled={loading}
+          className="text-red-400 hover:text-red-600 p-1"
+        >
+          <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>
+        </button>
       </div>
     </li>
   )

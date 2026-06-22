@@ -4,6 +4,7 @@ import prisma from "@/lib/prisma"
 import { redirect } from "next/navigation"
 import Link from "next/link"
 import CartItemCard from "@/components/CartItemCard"
+import CheckoutButton from "@/components/CheckoutButton"
 
 export default async function CartPage() {
   const session = await getServerSession(authOptions)
@@ -52,12 +53,7 @@ export default async function CartPage() {
                 <span className="text-lg font-medium text-gray-700">총 결제 금액</span>
                 <span className="text-2xl font-extrabold text-gray-900">{totalPrice.toLocaleString()}원</span>
               </div>
-              <button 
-                className="w-full bg-blue-600 text-white font-bold text-lg py-4 rounded-xl hover:bg-blue-700 transition-colors shadow-sm"
-                disabled
-              >
-                주문하기 (구현 예정)
-              </button>
+              <CheckoutButton disabled={cartItems.length === 0} />
             </div>
           </div>
         )}

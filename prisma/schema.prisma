@@ -36,6 +36,7 @@ model Menu {
   price        Int
   description  String?
   imageUrl     String?
+  options      Json?       // 메뉴 선택 옵션 스키마 저장용 (ex: 사이드, 음료)
   createdAt    DateTime    @default(now())
   updatedAt    DateTime    @updatedAt
   orderItems   OrderItem[]
@@ -50,6 +51,9 @@ model Order {
   restaurant   Restaurant  @relation(fields: [restaurantId], references: [id])
   totalPrice   Int
   status       String      @default("PENDING") // PENDING, COOKING, DELIVERING, COMPLETED
+  address      String?     // 배달 주소
+  phone        String?     // 연락처
+  requests     String?     // 요청사항
   createdAt    DateTime    @default(now())
   updatedAt    DateTime    @updatedAt
   orderItems   OrderItem[]
@@ -63,6 +67,7 @@ model OrderItem {
   menu      Menu     @relation(fields: [menuId], references: [id])
   quantity  Int
   price     Int      // Snapshot of menu price at the time of order
+  selectedOptions Json? // 주문 시 선택한 옵션
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
@@ -74,8 +79,7 @@ model CartItem {
   menuId    String
   menu      Menu     @relation(fields: [menuId], references: [id])
   quantity  Int      @default(1)
+  selectedOptions Json? // 담을 때 선택한 옵션
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  
-  @@unique([userId, menuId])
 }

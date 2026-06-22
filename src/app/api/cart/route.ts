@@ -13,27 +13,30 @@ export async function POST(request: Request) {
     
     const userId = (session.user as any).id
     const body = await request.json()
-    const { menuId } = body
+    const { menuId, selectedOptions } = body
 
     if (!menuId) {
       return new NextResponse("menuId is required", { status: 400 })
     }
 
-    // 장바구니에 이미 동일한 메뉴가 있는지 확인
-    const existingCartItem = await prisma.cartItem.findUnique({
+    // 완전히 동일한 옵션을 가진 동일한 메뉴가 있는지 찾기
+    const existingCartItems = await prisma.cartItem.findMany({
       where: {
-        userId_menuId: {
-          userId,
-          menuId
-        }
+        userId,
+        menuId
       }
     })
 
-    if (existingCartItem) {
-      // 이미 있다면 수량 증가
+    // JSON 객체 비교 (간단한 문자열화 비교)
+    const existingItem = existingCartItems.find(item => 
+      JSON.stringify(item.selectedOptions) === JSON.stringify(selectedOptions || null)
+    )
+
+    if (existingItem) {
+      // 이미 완전히 동일한 아이템이 있다면 수량만 증가
       const updatedItem = await prisma.cartItem.update({
-        where: { id: existingCartItem.id },
-        data: { quantity: existingCartItem.quantity + 1 }
+        where: { id: existingItem.id },
+        data: { quantity: existingItem.quantity + 1 }
       })
       return NextResponse.json(updatedItem)
     } else {
@@ -42,6 +45,7 @@ export async function POST(request: Request) {
         data: {
           userId,
           menuId,
+          selectedOptions: selectedOptions || null,
           quantity: 1
         }
       })

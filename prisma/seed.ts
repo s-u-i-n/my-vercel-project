@@ -13,11 +13,39 @@ async function main() {
   await prisma.menu.deleteMany()
   await prisma.restaurant.deleteMany()
 
+  const optionsByCategory: Record<string, any> = {
+    "분식": [
+      { name: "음료 추가", choices: ["선택 안함", "쿨피스(+2000원)", "콜라(+2000원)"] },
+      { name: "사이드 추가", choices: ["선택 안함", "모둠튀김(+4000원)", "참치마요 컵밥(+3500원)"] }
+    ],
+    "패스트푸드": [
+      { name: "세트 변경", choices: ["선택 안함(단품)", "프렌치 프라이(M) + 콜라(M) (+2500원)", "치즈스틱 + 사이다(M) (+3000원)"] },
+      { name: "소스 추가", choices: ["선택 안함", "스위트 칠리 소스(+500원)", "케이준 소스(+500원)"] }
+    ],
+    "일식": [
+      { name: "사이드 추가", choices: ["선택 안함", "미니 우동(+3000원)", "왕새우튀김 2pcs(+4000원)", "감자고로케 2pcs(+3000원)"] },
+      { name: "음료 추가", choices: ["선택 안함", "콜라(+2000원)", "라무네(+3000원)"] }
+    ],
+    "양식": [
+      { name: "사이드 메뉴", choices: ["선택 안함", "갈릭 빠네(+6000원)", "양송이 수프(+4500원)"] },
+      { name: "음료/와인", choices: ["선택 안함", "자몽 에이드(+5000원)", "하우스 와인(1잔)(+8000원)"] }
+    ],
+    "중식": [
+      { name: "사이드 추가", choices: ["선택 안함", "군만두 4pcs(+3000원)", "꽃빵 3pcs(+3000원)"] },
+      { name: "주류/음료", choices: ["선택 안함", "콜라(+2000원)", "칭따오 맥주(+6000원)", "연태고량주(소)(+12000원)"] }
+    ],
+    "한식": [
+      { name: "사이드 추가", choices: ["선택 안함", "폭탄 계란찜(+4000원)", "공기밥 추가(+1000원)"] },
+      { name: "음료 추가", choices: ["선택 안함", "전통 식혜(+2000원)", "콜라(+2000원)", "사이다(+2000원)"] }
+    ]
+  }
+
   const basicOptions = [
     { name: "음료 추가", choices: ["선택 안함", "콜라(+2000원)", "사이다(+2000원)"] }
   ]
 
   const restaurants = [
+    // 분식
     { 
       name: "동대문 엽기떡볶이", category: "분식", desc: "스트레스 풀리는 매운맛", img: "https://tse1.mm.bing.net/th?q=엽기떡볶이+치즈+실사",
       menus: [
@@ -42,6 +70,8 @@ async function main() {
         { name: "부산어묵", price: 3000, desc: "시원한 국물의 쫄깃한 어묵", img: "https://tse1.mm.bing.net/th?q=죠스떡볶이+어묵" }
       ]
     },
+    
+    // 패스트푸드
     { 
       name: "쉑쉑버거", category: "패스트푸드", desc: "프리미엄 수제 햄버거 쉑쉑", img: "https://tse1.mm.bing.net/th?q=쉑쉑버거",
       menus: [
@@ -55,7 +85,7 @@ async function main() {
       menus: [
         { name: "빅맥 세트", price: 6900, desc: "100% 순 쇠고기 패티 두 장에 빅맥만의 특별한 소스", img: "https://tse1.mm.bing.net/th?q=빅맥+세트" },
         { name: "상하이 버거 세트", price: 6900, desc: "매콤한 시즈닝을 입힌 100% 닭가슴살", img: "https://tse1.mm.bing.net/th?q=맥스파이시+상하이버거" },
-        { name: "맥나겟 6조각", price: 3500, desc: "바삭하고 촉촉한 치킨 맥너겟", img: "https://tse1.mm.bing.net/th?q=맥너겟" }
+        { name: "맥너겟 6조각", price: 3500, desc: "바삭하고 촉촉한 치킨 맥너겟", img: "https://tse1.mm.bing.net/th?q=맥너겟" }
       ]
     },
     { 
@@ -66,6 +96,8 @@ async function main() {
         { name: "어니언링", price: 2400, desc: "바삭바삭한 식감의 양파 튀김", img: "https://tse1.mm.bing.net/th?q=버거킹+어니언링+후기" }
       ]
     },
+    
+    // 일식
     { 
       name: "은행골", category: "일식", desc: "입에서 살살 녹는 부드러운 초밥", img: "https://tse1.mm.bing.net/th?q=은행골+초밥",
       menus: [
@@ -90,6 +122,8 @@ async function main() {
         { name: "에비가츠동", price: 10000, desc: "바삭한 왕새우 튀김이 올라간 덮밥", img: "https://tse1.mm.bing.net/th?q=에비가츠동" }
       ]
     },
+    
+    // 양식
     { 
       name: "아웃백 스테이크하우스", category: "양식", desc: "정통 호주식 스테이크와 파스타", img: "https://tse1.mm.bing.net/th?q=아웃백+스테이크하우스",
       menus: [
@@ -114,6 +148,8 @@ async function main() {
         { name: "댄싱 살사 라이스 위드 비프", price: 27800, desc: "부드러운 소고기와 숙주를 살사 소스에 볶아낸 철판 볶음밥", img: "https://tse1.mm.bing.net/th?q=댄싱살사라이스위드비프" }
       ]
     },
+
+    // 중식
     { 
       name: "홍콩반점", category: "중식", desc: "불맛 가득 짬뽕과 바삭한 탕수육", img: "https://tse1.mm.bing.net/th?q=홍콩반점+짜장면",
       menus: [
@@ -138,6 +174,8 @@ async function main() {
         { name: "군만두", price: 6000, desc: "바삭하게 튀겨낸 정통 중국식 군만두", img: "https://tse1.mm.bing.net/th?q=중국집+군만두" }
       ]
     },
+
+    // 한식
     { 
       name: "원할머니보쌈", category: "한식", desc: "부드러운 고기와 매콤달콤 무김치", img: "https://tse1.mm.bing.net/th?q=원할머니보쌈",
       menus: [
@@ -177,14 +215,14 @@ async function main() {
             price: m.price,
             description: m.desc,
             imageUrl: m.img,
-            options: basicOptions
+            options: optionsByCategory[r.category] || basicOptions
           }))
         }
       }
     })
   }
 
-  console.log("Seeding finished with perfect real menus.")
+  console.log("Seeding finished with varied options.")
 }
 
 main()

@@ -19,7 +19,7 @@ async function main() {
 
   const restaurants = [
     { 
-      name: "동대문 엽기떡볶이", category: "분식", desc: "스트레스 풀리는 매운맛", img: "https://tse1.mm.bing.net/th?q=동대문엽기떡볶이+메뉴",
+      name: "동대문 엽기떡볶이", category: "분식", desc: "스트레스 풀리는 매운맛", img: "https://tse1.mm.bing.net/th?q=엽기떡볶이+치즈+실사",
       menus: [
         { name: "엽기떡볶이", price: 14000, desc: "맛있게 매운 엽기떡볶이 (맵기 조절 가능)", img: "https://tse1.mm.bing.net/th?q=엽기떡볶이" },
         { name: "모둠튀김", price: 2000, desc: "바삭한 야채, 김말이, 만두 튀김", img: "https://tse1.mm.bing.net/th?q=분식+모둠튀김" },
@@ -27,7 +27,7 @@ async function main() {
       ]
     },
     { 
-      name: "신전떡볶이", category: "분식", desc: "후추맛 가득한 매콤달콤 떡볶이", img: "https://tse1.mm.bing.net/th?q=신전떡볶이+메뉴",
+      name: "신전떡볶이", category: "분식", desc: "후추맛 가득한 매콤달콤 떡볶이", img: "https://tse1.mm.bing.net/th?q=신전떡볶이+치즈떡볶이+실사",
       menus: [
         { name: "치즈떡볶이", price: 5500, desc: "신전 특제 소스와 듬뿍 올라간 치즈", img: "https://tse1.mm.bing.net/th?q=신전+치즈떡볶이" },
         { name: "튀김오뎅 (6개)", price: 1700, desc: "신전의 시그니처 튀김오뎅", img: "https://tse1.mm.bing.net/th?q=신전+튀김오뎅" },
@@ -59,11 +59,11 @@ async function main() {
       ]
     },
     { 
-      name: "버거킹", category: "패스트푸드", desc: "불맛 가득한 와퍼의 진수", img: "https://tse1.mm.bing.net/th?q=버거킹+와퍼",
+      name: "버거킹", category: "패스트푸드", desc: "불맛 가득한 와퍼의 진수", img: "https://tse1.mm.bing.net/th?q=버거킹+와퍼+내돈내산+후기",
       menus: [
-        { name: "와퍼 세트", price: 9100, desc: "직화로 구운 100% 순쇠고기 패티의 대표 버거", img: "https://tse1.mm.bing.net/th?q=버거킹+와퍼+세트" },
-        { name: "콰트로치즈와퍼", price: 9900, desc: "4가지 고품격 치즈와 불맛 가득한 패티의 조화", img: "https://tse1.mm.bing.net/th?q=콰트로치즈와퍼" },
-        { name: "어니언링", price: 2400, desc: "바삭바삭한 식감의 양파 튀김", img: "https://tse1.mm.bing.net/th?q=버거킹+어니언링" }
+        { name: "와퍼 세트", price: 9100, desc: "직화로 구운 100% 순쇠고기 패티의 대표 버거", img: "https://tse1.mm.bing.net/th?q=버거킹+와퍼세트+내돈내산" },
+        { name: "콰트로치즈와퍼", price: 9900, desc: "4가지 고품격 치즈와 불맛 가득한 패티의 조화", img: "https://tse1.mm.bing.net/th?q=콰트로치즈와퍼+실사" },
+        { name: "어니언링", price: 2400, desc: "바삭바삭한 식감의 양파 튀김", img: "https://tse1.mm.bing.net/th?q=버거킹+어니언링+후기" }
       ]
     },
     { 
@@ -107,7 +107,7 @@ async function main() {
       ]
     },
     { 
-      name: "매드포갈릭", category: "양식", desc: "마늘을 테마로 한 독특한 이탈리안", img: "https://tse1.mm.bing.net/th?q=매드포갈릭",
+      name: "매드포갈릭", category: "양식", desc: "마늘을 테마로 한 독특한 이탈리안", img: "https://tse1.mm.bing.net/th?q=매드포갈릭+갈릭스노잉피자+실사",
       menus: [
         { name: "갈릭 스노잉 피자", price: 26800, desc: "화이트 소스에 새우, 파인애플, 튀긴 마늘이 어우러진 피자", img: "https://tse1.mm.bing.net/th?q=갈릭스노잉피자" },
         { name: "갈릭페뇨 파스타", price: 24800, desc: "할라피뇨와 마늘로 맛을 낸 매콤한 올리브 오일 파스타", img: "https://tse1.mm.bing.net/th?q=갈릭페뇨파스타" },

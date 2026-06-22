@@ -13,15 +13,36 @@ type Restaurant = {
 
 export default function RestaurantFilter({ initialRestaurants }: { initialRestaurants: Restaurant[] }) {
   const [selectedCategory, setSelectedCategory] = useState("전체")
+  const [searchQuery, setSearchQuery] = useState("")
   
   const categories = ["전체", "분식", "패스트푸드", "일식", "양식", "중식", "한식"]
 
-  const filteredRestaurants = selectedCategory === "전체" 
+  // 1차 필터링: 카테고리
+  let filteredRestaurants = selectedCategory === "전체" 
     ? initialRestaurants 
     : initialRestaurants.filter(r => r.category === selectedCategory)
 
+  // 2차 필터링: 검색어
+  if (searchQuery.trim() !== "") {
+    filteredRestaurants = filteredRestaurants.filter(r => 
+      r.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
+      (r.description && r.description.toLowerCase().includes(searchQuery.toLowerCase()))
+    )
+  }
+
   return (
     <div>
+      {/* 검색창 */}
+      <div className="mb-6">
+        <input 
+          type="text" 
+          placeholder="먹고 싶은 식당이나 메뉴를 검색해보세요! (예: 떡볶이)" 
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#ea580c] focus:border-transparent transition-all"
+        />
+      </div>
+
       {/* 카테고리 필터 탭 */}
       <div className="flex overflow-x-auto hide-scrollbar gap-2 mb-8 pb-2">
         {categories.map((category) => (

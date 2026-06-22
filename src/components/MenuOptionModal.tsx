@@ -59,13 +59,13 @@ export default function MenuOptionModal({ menu, onClose }: { menu: Menu, onClose
         }
       }
 
-      router.refresh() // 헤더 카운트 즉시 반영을 위해 먼저 refresh 호출
-
       if (redirectCheckout) {
-        // refresh 직후 push 하면 최신 상태를 가지고 라우팅 됨
-        router.push("/checkout")
+        // router.push는 Next.js 최적화로 인해 레이아웃(헤더)을 즉시 새로고침하지 않을 수 있습니다.
+        // 강제 이동을 통해 완벽한 서버사이드 렌더링을 유도하여 헤더 숫자를 즉시 갱신합니다.
+        window.location.href = "/checkout"
       } else {
         alert("장바구니에 담았습니다!")
+        router.refresh()
         onClose()
       }
     } catch (err: any) {

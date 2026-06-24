@@ -49,8 +49,8 @@ async function main() {
     { 
       name: "동대문 엽기떡볶이", category: "분식", desc: "스트레스 풀리는 매운맛", img: "https://tse1.mm.bing.net/th?q=엽기떡볶이+치즈+실사",
       menus: [
-        { name: "엽기떡볶이", price: 14000, desc: "맛있게 매운 엽기떡볶이 (맵기 조절 가능)", img: "https://tse1.mm.bing.net/th?q=엽기떡볶이" },
-        { name: "모둠튀김", price: 2000, desc: "바삭한 야채, 김말이, 만두 튀김", img: "https://tse1.mm.bing.net/th?q=분식+모둠튀김" },
+        { name: "엽기떡볶이", price: 14000, desc: "맛있게 매운 엽기떡볶이", img: "https://tse1.mm.bing.net/th?q=엽기떡볶이" },
+        { name: "모둠튀김", price: 4000, desc: "바삭한 야채, 김말이, 만두 튀김", img: "https://tse1.mm.bing.net/th?q=분식+모둠튀김" },
         { name: "참치마요밥", price: 3500, desc: "매운맛을 달래주는 고소한 참치마요", img: "https://tse1.mm.bing.net/th?q=참치마요+주먹밥" }
       ]
     },

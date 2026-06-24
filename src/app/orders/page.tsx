@@ -48,6 +48,7 @@ export default async function OrdersPage() {
                   {/* 상단 정보 */}
                   <div className="flex justify-between items-start mb-6">
                     <div className="space-y-1">
+                      <h2 className="text-xl font-extrabold text-gray-900 mb-2">{order.restaurant.name}</h2>
                       <p className="text-xs text-gray-500">주문일: {orderDate}</p>
                       <p className="text-xs text-gray-500">배달 주소: {order.address || "정보 없음"}</p>
                     </div>
